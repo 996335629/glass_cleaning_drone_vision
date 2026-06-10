@@ -1,0 +1,74 @@
+%YAML 1.0
+---
+# Glass Cleaning Drone Vision System Configuration
+
+# 系统设置
+system:
+  # simulation 或 camera
+  mode: camera
+  # 1=调试窗口，0=无头运行（X5实机）
+  enable_visualization: 1
+  enable_reflection_filter: 0
+  log_level: info
+
+# 处理分辨率
+process:
+  width: 320
+  height: 240
+  max_features: 40
+
+# 相机设置
+camera:
+  type: gemini336
+  color_width: 320
+  color_height: 240
+  depth_width: 320
+  depth_height: 240
+  fps: 30
+  enable_depth: 1
+  enable_color: 1
+  align_depth_to_color: 1
+
+# 幕墙竖框检测参数
+detection:
+  canny_low: 30.0
+  canny_high: 100.0
+  hough_min_len: 60
+  hough_max_gap: 15
+  cluster_dist: 25
+  vertical_angle: 15.0
+
+# 光流设置（保留，未完全接入）
+optical_flow:
+  quality_level: 0.01
+  min_distance: 10
+  block_size: 3
+  use_harris: 0
+
+# 反射检测设置（保留，未完全接入）
+reflection:
+  edge_threshold: 50.0
+  symmetry_threshold: 0.7
+  depth_discontinuity_threshold: 100
+
+# 位移估计设置（保留，未完全接入）
+estimation:
+  enable_kalman: 0
+  process_noise: 0.1
+  measurement_noise: 1.0
+  outlier_threshold: 2.0
+
+# 模拟器设置
+simulator:
+  glass_reflectivity: 0.3
+  glass_blur: 2.0
+  add_noise: 1
+  noise_level: 10
+
+# 通信设置
+communication:
+  # 1=通过 port 发送，0=仅显示
+  # port: 串口名，如 COM3 或 /dev/ttyUSB0
+  enable_uart: 0
+  port: ""
+  baudrate: 115200
